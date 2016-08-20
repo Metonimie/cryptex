@@ -1,3 +1,23 @@
 html, body {
-  width: 100px;
+  width: 400px;
+  height: auto;
+}
+
+textarea {
+  padding: 10px;
+  resize: none;
+}
+
+.box {
+  margin: 10px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.error {
+  margin: 5px;
+  color: red;
+  display: inline;
 }

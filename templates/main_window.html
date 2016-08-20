@@ -8,9 +8,18 @@
   </head>
 
   <body>
-    <div class="beast">Frog</div>
-    <div class="beast">Turtle</div>
-    <div class="beast">Snake</div>
+    <textarea autofocus="autofocu" rows="5" cols="46"
+              placeholder="Enter your text..."></textarea>
+    <div class="box">
+      <label for="password">Key:</label>
+      <input id="password"type="password"/>
+      <p class="error">No key set!!!</p>
+      <br />
+      <input type="checkbox" name="store" value="store">Store key for future use?<br>
+    </div>
+    <button id="encrypt_button">Encrypt</button>
+    <button id="decrypt_button">Decrypt</button>
+    <button id="copy_button">Copy</button>
 
     <script src="aes.js"></script>
     <script src="main_window.js"></script>
