@@ -18,5 +18,12 @@
     "default_icon": "icons/lock-icon-32.png",
     "default_title": "Crypto",
     "default_popup": "templates/main_window.html"
-  }
+  },
+
+  "content_scripts": [
+    {
+      "js": ["main.js"]
+    }
+  ]
+
 }
