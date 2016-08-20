@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
-  "name": "Crypto",
+  "name": "Cryptex",
   "version": "1.0",
 
   "description": "Encrypts text with AES cipher and a custom password.",
-  "homepage_url": "https://github.com/",
+  "homepage_url": "https://github.com/Metonimie",
 
   "icons": {
     "48": "icons/lock-icon.png"
@@ -16,7 +16,7 @@
 
   "browser_action": {
     "default_icon": "icons/lock-icon-32.png",
-    "default_title": "Crypto",
+    "default_title": "Cryptex",
     "default_popup": "templates/main_window.html"
   }
 }
