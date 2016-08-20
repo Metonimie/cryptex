@@ -1,3 +1,7 @@
+/*
+  Author: Metonimie
+  Date: 20 Aug 2016
+ */
 "use strict";
 console.log("Hello");
 
