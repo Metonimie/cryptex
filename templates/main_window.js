@@ -1,5 +1,4 @@
 "use strict";
-
 console.log("Hello");
 
 function copyText() {
@@ -19,8 +18,14 @@ function copyText() {
 function encryptText() {
     console.log("encryptText called!");
 
-    var key = document.getElementById("password");
+    var key = document.querySelector("#password");
     var text = document.querySelector("textarea");
+
+    var newkey = getKey();
+    if (newkey) {
+      console.log(newkey);
+      key = newkey;
+    }
 
     var encrypted = CryptoJS.AES.encrypt(text.value, key.value);
     text.value = encrypted.toString();
@@ -32,7 +37,7 @@ function encryptText() {
 function decryptText() {
     console.log("decryptText called!");
 
-    var key = document.getElementById("password");
+    var key = document.querySelector("#password");
     var text = document.querySelector("textarea");
 
     console.log(key.value);
@@ -43,11 +48,29 @@ function decryptText() {
     console.log("decryptText exit!");
 }
 
+function storeKey(keyValue) {
+  console.log("storeKey called!");
+
+  chrome.storage.local.set({
+    secretKey: keyValue
+  });
+
+  console.log("storeKey exit!");
+}
+
+function getKey() {
+  console.log("getKey called!");
+
+  chrome.storage.local.get("secretKey", (res) => {
+    return res.secretKey || null;
+  });
+}
+
 (function () {
     var
-        copy_button       = document.getElementById("copy_button"),
-        decrypt_button    = document.getElementById("decrypt_button"),
-        encrypt_button    = document.getElementById("encrypt_button");
+        copy_button       = document.querySelector("#copy_button"),
+        decrypt_button    = document.querySelector("#decrypt_button"),
+        encrypt_button    = document.querySelector("#encrypt_button");
 
         // Add event listeners
         copy_button.addEventListener("click", copyText, false);
