@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Crypto",
+  "version": "1.0",
+
+  "description": "Encrypts text with AES cipher and a custom password.",
+  "homepage_url": "https://github.com/",
+
+  "icons": {
+    "48": "icons/lock-icon.png"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/lock-icon-32.png",
+    "default_title": "Crypto",
+    "default_popup": "templates/main_window.html"
+  }
+}
