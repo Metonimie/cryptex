@@ -1,4 +1,5 @@
 # Cryptex
+
 **This extension is partially finished!**
 
 This is my first extension, It's purpose is to encrypt text with AES cipher from [CryptoJS](https://github.com/sytelus/CryptoJS) using a locally stored passphrase.

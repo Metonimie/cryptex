@@ -35,7 +35,6 @@ function encryptTextAction() {
     // console.log("Encrypting using " + keyValue);
     var encrypted = CryptoJS.AES.encrypt(text.value, keyValue);
     text.value = encrypted.toString();
-    // copyTextAction();
 
     console.log("encryptText exit!");
 }
@@ -51,23 +50,8 @@ function decryptTextAction() {
     // console.log("Decrypting using " + keyValue);
     var decrypted = CryptoJS.AES.decrypt(text.value, keyValue);
     text.value = decrypted.toString(CryptoJS.enc.Utf8);
-    // copyTextAction();
 
     console.log("decryptText exit!");
-}
-
-function storeKey(keyValue) {
-    console.log("storeKey called!");
-
-    chrome.storage.local.set({
-        "secretKey": keyValue
-    }, function() {
-        if(chrome.runtime.lastError) {
-            console.log(chrome.runtime.lastError);
-        }
-    });
-
-    console.log("storeKey exit!");
 }
 
 function storeKeyAction() {
@@ -94,6 +78,20 @@ function initKey() {
     });
 
     console.log("initKey exit!");
+}
+
+function storeKey(keyValue) {
+    console.log("storeKey called!");
+
+    chrome.storage.local.set({
+        "secretKey": keyValue
+    }, function() {
+        if(chrome.runtime.lastError) {
+            console.log(chrome.runtime.lastError);
+        }
+    });
+
+    console.log("storeKey exit!");
 }
 
 (function () {
