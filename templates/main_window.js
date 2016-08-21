@@ -35,7 +35,7 @@ function encryptTextAction() {
     // console.log("Encrypting using " + keyValue);
     var encrypted = CryptoJS.AES.encrypt(text.value, keyValue);
     text.value = encrypted.toString();
-    copyText();
+    copyTextAction();
 
     console.log("encryptText exit!");
 }
@@ -51,7 +51,7 @@ function decryptTextAction() {
     // console.log("Decrypting using " + keyValue);
     var decrypted = CryptoJS.AES.decrypt(text.value, keyValue);
     text.value = decrypted.toString(CryptoJS.enc.Utf8);
-    copyText();
+    copyTextAction();
 
     console.log("decryptText exit!");
 }

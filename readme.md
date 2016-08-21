@@ -1,7 +1,13 @@
 # Cryptex
-**This extension is not finished!**
+**This extension is partially finished!**
 
 This is my first extension, It's purpose is to encrypt text with AES cipher from [CryptoJS](https://github.com/sytelus/CryptoJS) using a locally stored passphrase.
 
-Unfortunately I can't get WebStorage to work, and you have to enter the passphrase every time.
-I've tried some example extensions and it didn't work there either.
+# How to use
+
+Enter the text you want to encrypt/decrypt in the text box and click the button.
+If you want to use a specific key, update the key field.
+
+If you want to reuse the key every time, hit the store button, the next time
+you start the extension the key field will be empty but the encryption and
+decryption process will use the stored key.
