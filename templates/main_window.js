@@ -5,7 +5,12 @@
 "use strict";
 console.log("Hello");
 
-function copyText() {
+var secretKey = null;
+
+var key  = document.querySelector("#password");
+var text = document.querySelector("textarea");
+
+function copyTextAction() {
     console.log("copyText called!");
     var field = document.querySelector("textarea");
     field.focus();
@@ -19,33 +24,32 @@ function copyText() {
     console.log("copyText exit!");
 }
 
-function encryptText() {
+function encryptTextAction() {
     console.log("encryptText called!");
 
-    var key = document.querySelector("#password");
-    var text = document.querySelector("textarea");
-
-    var newkey = getKey();
-    if (newkey) {
-      console.log(newkey);
-      key = newkey;
+    var keyValue = key.value;
+    if ( secretKey != null && keyValue == "") {
+        keyValue = secretKey;
     }
 
-    var encrypted = CryptoJS.AES.encrypt(text.value, key.value);
+    // console.log("Encrypting using " + keyValue);
+    var encrypted = CryptoJS.AES.encrypt(text.value, keyValue);
     text.value = encrypted.toString();
     copyText();
 
     console.log("encryptText exit!");
 }
 
-function decryptText() {
+function decryptTextAction() {
     console.log("decryptText called!");
 
-    var key = document.querySelector("#password");
-    var text = document.querySelector("textarea");
+    var keyValue = key.value;
+    if ( secretKey != null && keyValue == "") {
+        keyValue = secretKey;
+    }
 
-    console.log(key.value);
-    var decrypted = CryptoJS.AES.decrypt(text.value, key.value);
+    // console.log("Decrypting using " + keyValue);
+    var decrypted = CryptoJS.AES.decrypt(text.value, keyValue);
     text.value = decrypted.toString(CryptoJS.enc.Utf8);
     copyText();
 
@@ -53,33 +57,59 @@ function decryptText() {
 }
 
 function storeKey(keyValue) {
-  console.log("storeKey called!");
+    console.log("storeKey called!");
 
-  chrome.storage.local.set({
-    secretKey: keyValue
-  });
+    chrome.storage.local.set({
+        "secretKey": keyValue
+    }, function() {
+        if(chrome.runtime.lastError) {
+            console.log(chrome.runtime.lastError);
+        }
+    });
 
-  console.log("storeKey exit!");
+    console.log("storeKey exit!");
 }
 
-function getKey() {
-  console.log("getKey called!");
+function storeKeyAction() {
+    console.log("storeKeyAction called!");
 
-  chrome.storage.local.get("secretKey", (res) => {
-    return res.secretKey || null;
-  });
+    if (key.value != null && key.value != "") {
+        secretKey = key.value;
+        storeKey(key.value);
+    }
+
+    console.log("storeKeyAction exit!");
+}
+
+function initKey() {
+    console.log("initKey called!");
+
+    chrome.storage.local.get(null, function(results) {
+        if(chrome.runtime.lastError) {
+            console.log(chrome.runtime.lastError);
+        } else {
+              var noteKeys = Object.keys(results);
+              secretKey = results[noteKeys[0]];
+        }
+    });
+
+    console.log("initKey exit!");
 }
 
 (function () {
     var
-        copy_button       = document.querySelector("#copy_button"),
-        decrypt_button    = document.querySelector("#decrypt_button"),
-        encrypt_button    = document.querySelector("#encrypt_button");
+        copyButton       = document.querySelector("#copy-btn"),
+        decryptButton    = document.querySelector("#decrypt-btn"),
+        encryptButton    = document.querySelector("#encrypt-btn"),
+        storeKeyButton   = document.querySelector("#store-btn");
+
+        initKey(); // Try to get key from memory.
 
         // Add event listeners
-        copy_button.addEventListener("click", copyText, false);
-        encrypt_button.addEventListener("click", encryptText, false);
-        decrypt_button.addEventListener("click", decryptText, false);
+        storeKeyButton.addEventListener("click", storeKeyAction, false);
+        copyButton.addEventListener("click", copyTextAction, false);
+        encryptButton.addEventListener("click", encryptTextAction, false);
+        decryptButton.addEventListener("click", decryptTextAction, false);
 })();
 
 console.log("Bye!");
