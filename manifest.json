@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Cryptex",
-  "version": "1.0",
+  "version": "1.1",
 
   "description": "Encrypts text with AES cipher and a custom password.",
   "homepage_url": "https://github.com/Metonimie",
