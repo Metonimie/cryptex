@@ -8,6 +8,10 @@ textarea {
   resize: none;
 }
 
+input {
+  padding: 2px;
+}
+
 .box {
   margin: 10px;
 }
