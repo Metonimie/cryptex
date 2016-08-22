@@ -7,7 +7,9 @@
   "homepage_url": "https://github.com/Metonimie",
 
   "icons": {
-    "48": "icons/lock-icon.png"
+     "32":  "icons/lock-icon-32.png",
+     "48":  "icons/lock-icon-48.png",
+    "128":  "icons/lock-icon-128.png"
   },
 
   "permissions": [
