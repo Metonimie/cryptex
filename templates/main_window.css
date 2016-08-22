@@ -24,6 +24,10 @@ button {
   visibility: hidden;
 }
 
+.margin-30 {
+  margin-left: 30%;
+}
+
 .error {
   margin: 5px;
   color: red;
